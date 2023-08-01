@@ -30,7 +30,13 @@
 <br />
 <a href="{% url 'home'%}" class="btn btn-secondary">Back</a>
 {% if user.is_superuser%}
+<a href="{% url 'update_record' customer_record.id%}" class="btn btn-danger"
+  >Update</a
+>
+{% endif %} 
+{% if user.is_superuser%}
 <a href="{% url 'delete_record' customer_record.id%}" class="btn btn-danger"
   >Delete</a
 >
-{% endif %} {% endblock content %}
+{% endif %}
+{% endblock content %}

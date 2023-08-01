@@ -100,3 +100,18 @@ def add_record(request):
     else:
         messages.error(request, "You have to login first")
         return redirect("home")
+
+def update_record(request,pk):
+    if request.user.is_authenticated:
+        record = Record.objects.get(id=pk)
+        if request.method == "POST":
+            form = AddRecordForm(request.POST,instance=record)
+            if form.is_valid():
+                form.save()
+                messages.success(request,"Record was updated successfully!")
+                return redirect('record',pk=pk)
+        else:
+            form = AddRecordForm(instance=record)
+            return render(request,'update_record.html',{"form":form,"record":record})
+    
+    return redirect('customer_record',pk=pk)
