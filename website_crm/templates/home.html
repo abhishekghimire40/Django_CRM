@@ -20,7 +20,9 @@
       {% for record in records %}
       <tr>
       <td>
-        {{record.id}}
+        <a href="{% url 'record' pk=record.id %}">
+          {{record.id}}
+        </a>
       </td>
       <td>
         {{record.first_name}} {{record.last_name}}
